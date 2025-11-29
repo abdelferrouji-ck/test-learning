@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاختبار التشخيصي الشامل للتعثر الدراسي - النسخة المهنية</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+            font-size: 15px;
+        }
+        
+        .professional-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+        
+        .professional-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #34495e 100%);
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .professional-header h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .protocol-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            margin-top: 15px;
+            display: inline-block;
+        }
+        
+        .assessment-grid {
+            display: grid;
+            gap: 0;
+        }
+        
+        .domain-section {
+            padding: 25px;
+            border-bottom: 1px solid #eef2f7;
+            background: #fafbfc;
+        }
+        
+        .domain-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #2980b9 100%);
+            color: white;
+            padding: 18px 25px;
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .domain-number {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        
+        .question-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e1e8ed;
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .clinical-scale {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .scale-option {
+            text-align: center;
+            padding: 14px 8px;
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .scale-option:hover {
+            border-color: var(--secondary);
+            background: #f8f9fa;
+        }
+        
+        .scale-option input[type="radio"] {
+            display: none;
+        }
+        
+        .scale-option.selected {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .btn-professional {
+            background: linear-gradient(135deg, var(--success) 0%, #2ecc71 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 17px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(46, 204, 113, 0.4);
+            display: block;
+            margin: 35px auto;
+            min-width: 280px;
+        }
+        
+        .btn-professional:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(46, 204, 113, 0.6);
+        }
+        
+        .professional-results {
+            display: none;
+            padding: 40px 30px;
+            background: #f8f9fa;
+        }
+        
+        .results-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .final-score {
+            font-size: 52px;
+            font-weight: 800;
+            margin: 20px 0;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .diagnosis-level {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 25px 0;
+            padding: 15px;
+            border-radius: 12px;
+        }
+        
+        .no-difficulty { background: #d5f4e6; color: #27ae60; border: 3px solid #27ae60; }
+        .mild-difficulty { background: #fff3cd; color: #f39c12; border: 3px solid #f39c12; }
+        .moderate-difficulty { background: #ffeaa7; color: #e67e22; border: 3px solid #e67e22; }
+        .severe-difficulty { background: #fed7d7; color: #e74c3c; border: 3px solid #e74c3c; }
+        
+        .domain-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .domain-score {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .recommendations-box {
+            background: #e8f4fc;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-right: 4px solid var(--secondary);
+            text-align: right;
+        }
+
+        .diagnosis-detail {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning);
+            text-align: right;
+        }
+
+        .training-box {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning);
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .clinical-scale {
+                grid-template-columns: 1fr;
+            }
+            
+            .professional-header h1 {
+                font-size: 22px;
+            }
+            
+            .domain-header {
+                font-size: 16px;
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="professional-container">
+        <div class="professional-header">
+            <h1>الاختبار التشخيصي الشامل للتعثر الدراسي</h1>
+            <div class="protocol-badge">نسخة مهنية معتمدة - 21 بند تشخيصي</div>
+        </div>
+
+        <form id="professionalAssessmentForm">
+            <!-- المحور 1: الانتباه -->
+            <div class="domain-header">
+                <span>المحور الأول: الانتباه والتركيز</span>
+                <div class="domain-number">3 بنود</div>
+            </div>
+            <div class="domain-section">
+                <div class="question-card">
+                    <div class="question-text">
+                        1. هل يجد الطالب صعوبة في الحفاظ على الانتباه أثناء شرح الدروس أو أداء الواجبات لمدة تتناسب مع عمره؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="attention_1" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_1" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_1" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_1" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        2. هل يتشتت انتباه الطالب بسهولة بسبب المؤثرات الخارجية (أصوات، حركة) أثناء المذاكرة؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="attention_2" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_2" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_2" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_2" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        3. هل يظهر الطالب صعوبة في إنهاء المهام المطلوبة منه بسبب ضعف الانتباه؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="attention_3" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_3" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_3" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="attention_3" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المحور 2: الذاكرة العاملة -->
+            <div class="domain-header">
+                <span>المحور الثاني: الذاكرة العاملة</span>
+                <div class="domain-number">3 بنود</div>
+            </div>
+            <div class="domain-section">
+                <div class="question-card">
+                    <div class="question-text">
+                        4. هل ينسى الطالب التعليمات الشفهية متعددة الخطوات (أكثر من خطوتين) مباشرة بعد سماعها؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="memory_1" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_1" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_1" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_1" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        5. هل يجد صعوبة في تذكر المعلومات المؤقتة اللازمة لحل المسائل (مثل الأرقام في مسائل الرياضيات)؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="memory_2" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_2" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_2" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_2" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        6. هل يحتاج إلى تكرار المعلومات أكثر من مرة لفهمها ومعالجتها؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="memory_3" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_3" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_3" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="memory_3" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المحور 3: القراءة -->
+            <div class="domain-header">
+                <span>المحور الثالث: القراءة</span>
+                <div class="domain-number">3 بنود</div>
+            </div>
+            <div class="domain-section">
+                <div class="question-card">
+                    <div class="question-text">
+                        7. هل يخلط بين الحروف المتشابهة صوتاً أو شكلاً (ب/ت/ث، ج/ح/خ) أثناء القراءة؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="reading_1" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_1" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_1" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_1" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        8. هل يقرأ ببطء ملحوظ مقارنة بأقرانه في نفس العمر؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="reading_2" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_2" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_2" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_2" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        9. هل يتجنب القراءة الجهرية أو يظهر توتراً عند الطلب منه القراءة؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="reading_3" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_3" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_3" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="reading_3" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المحور 4: الفهم -->
+            <div class="domain-header">
+                <span>المحور الرابع: الفهم والاستيعاب</span>
+                <div class="domain-number">3 بنود</div>
+            </div>
+            <div class="domain-section">
+                <div class="question-card">
+                    <div class="question-text">
+                        10. هل يجد صعوبة في فهم النصوص المقروءة والإجابة على أسئلة الاستيعاب؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_1" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_1" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_1" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_1" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        11. هل يظهر صعوبة في استخلاص الفكرة الرئيسية من النص أو القصة؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_2" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_2" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_2" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_2" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        12. هل يجد صعوبة في فهم الروابط المنطقية بين الأحداث في القصة؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_3" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_3" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_3" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="comprehension_3" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المحور 5: الكتابة -->
+            <div class="domain-header">
+                <span>المحور الخامس: الكتابة والتعبير</span>
+                <div class="domain-number">3 بنود</div>
+            </div>
+            <div class="domain-section">
+                <div class="question-card">
+                    <div class="question-text">
+                        13. هل خط اليد غير مقروء أو غير منتظم مقارنة بأقرانه؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="writing_1" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_1" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_1" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_1" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        14. هل يرتكب أخطاء إملائية كثيرة وغير مألوفة لعمره؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="writing_2" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_2" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_2" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_2" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        15. هل يجد صعوبة في تنظيم الأفكار وتحويلها إلى فقرات مكتوبة متماسكة؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="writing_3" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_3" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_3" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="writing_3" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المحور 6: الحساب -->
+            <div class="domain-header">
+                <span>المحور السادس: الحساب والرياضيات</span>
+                <div class="domain-number">3 بنود</div>
+            </div>
+            <div class="domain-section">
+                <div class="question-card">
+                    <div class="question-text">
+                        16. هل يخلط بين الأرقام المتشابهة (مثل 12 و 21) أو الرموز الرياضية؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="math_1" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_1" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_1" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_1" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        17. هل يعتمد على عد الأصابع في العمليات الحسابية البسيطة المناسبة لعمره؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="math_2" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_2" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_2" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_2" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        18. هل يجد صعوبة في فهم وفك رموز المسائل الكلامية (اللفظية)؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="math_3" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_3" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_3" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="math_3" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المحور 7: الوظائف التنفيذية -->
+            <div class="domain-header">
+                <span>المحور السابع: الوظائف التنفيذية</span>
+                <div class="domain-number">3 بنود</div>
+            </div>
+            <div class="domain-section">
+                <div class="question-card">
+                    <div class="question-text">
+                        19. هل يجد صعوبة في تنظيم وقته وإدارة المهام الدراسية؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="executive_1" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_1" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_1" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_1" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        20. هل يبدأ المهام ولكن لا ينهيها، أو ينتقل من مهمة إلى أخرى دون إكمالها؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="executive_2" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_2" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_2" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_2" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">
+                        21. هل يظهر صعوبة في التخطيط لإنشاء مشروع أو بحث مدرسي؟
+                    </div>
+                    <div class="clinical-scale">
+                        <label class="scale-option">
+                            <input type="radio" name="executive_3" value="0">
+                            <span>أبداً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_3" value="1">
+                            <span>نادراً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_3" value="2">
+                            <span>غالباً</span>
+                        </label>
+                        <label class="scale-option">
+                            <input type="radio" name="executive_3" value="3">
+                            <span>دائماً</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                ⚠️ يرجى الإجابة على جميع الأسئلة قبل الحصول على النتيجة
+            </div>
+
+            <button type="submit" class="btn-professional">الحصول على النتيجة التشخيصية</button>
+        </form>
+
+        <div id="professionalResults" class="professional-results">
+            <div class="results-container">
+                <h2>النتيجة التشخيصية النهائية</h2>
+                <div class="final-score" id="totalScore">0</div>
+                <div class="diagnosis-level" id="diagnosisLevel"></div>
+                
+                <div class="domain-breakdown" id="domainBreakdown"></div>
+                
+                <!-- التشخيص التفصيلي -->
+                <div class="diagnosis-detail">
+                    <h3>📊 التشخيص التفصيلي حسب المحاور:</h3>
+                    <div id="detailedDiagnosis"></div>
+                </div>
+
+                <!-- النصائح الخمس -->
+                <div class="recommendations-box">
+                    <h3>🎯 5 نصائح علمية من الخبراء الدوليين:</h3>
+                    <div id="expertTips"></div>
+                </div>
+
+                <!-- التمارين -->
+                <div class="training-box">
+                    <h3>💪 5 تمارين تدريبية مستوحاة من برامج عالمية:</h3>
+                    <div id="trainingExercises"></div>
+                </div>
+
+                <!-- التواصل -->
+                <div class="contact-box">
+                    <h3>📞 للبرامج المصممة خصيصاً والمتابعة المهنية:</h3>
+                    <p>إذا أردت برامج مصممة بشكل محكم ومتابعة من الكوتش عبد اللطيف تواتي يمكنكم التواصل معه عبر الضغط على الرابط التالي:</p>
+                    <a href="https://wa.me/qr/34PW6LXVCALDN1" class="whatsapp-btn" target="_blank">
+                        التواصل عبر الواتساب
+                    </a>
+                    <p>أو عبر التواصل على الواتساب على:<br>
+                    <strong>0600748790</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تفعيل اختيارات المقياس
+        document.querySelectorAll('.scale-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                // إزالة التحديد من جميع الخيارات في نفس المجموعة
+                const groupName = radio.name;
+                document.querySelectorAll(`input[name="${groupName}"]`).forEach(r => {
+                    r.parentElement.classList.remove('selected');
+                });
+                
+                // إضافة التحديد للخيار الحالي
+                this.classList.add('selected');
+            });
+        });
+
+        document.getElementById('professionalAssessmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // التحقق من أن جميع الأسئلة قد تمت الإجابة عليها
+            const allQuestions = document.querySelectorAll('input[type="radio"]');
+            const answeredQuestions = document.querySelectorAll('input[type="radio"]:checked');
+            
+            if (answeredQuestions.length !== 21) {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            let totalScore = 0;
+            const domainScores = {};
+            
+            // حساب الدرجات لكل محور
+            const domains = [
+                { name: 'الانتباه', questions: ['attention_1', 'attention_2', 'attention_3'] },
+                { name: 'الذاكرة العاملة', questions: ['memory_1', 'memory_2', 'memory_3'] },
+                { name: 'القراءة', questions: ['reading_1', 'reading_2', 'reading_3'] },
+                { name: 'الفهم', questions: ['comprehension_1', 'comprehension_2', 'comprehension_3'] },
+                { name: 'الكتابة', questions: ['writing_1', 'writing_2', 'writing_3'] },
+                { name: 'الحساب', questions: ['math_1', 'math_2', 'math_3'] },
+                { name: 'الوظائف التنفيذية', questions: ['executive_1', 'executive_2', 'executive_3'] }
+            ];
+            
+            domains.forEach(domain => {
+                let domainTotal = 0;
+                domain.questions.forEach(question => {
+                    const selected = document.querySelector(`input[name="${question}"]:checked`);
+                    if (selected) {
+                        domainTotal += parseInt(selected.value);
+                    }
+                });
+                domainScores[domain.name] = domainTotal;
+                totalScore += domainTotal;
+            });
+            
+            // عرض النتائج
+            displayProfessionalResults(totalScore, domainScores);
+        });
+        
+        function displayProfessionalResults(totalScore, domainScores) {
+            document.getElementById('totalScore').textContent = totalScore;
+            
+            // تحديد مستوى الصعوبة
+            let diagnosisLevel, diagnosisClass, recommendations;
+            
+            if (totalScore <= 15) {
+                diagnosisLevel = 'لا توجد صعوبات';
+                diagnosisClass = 'no-difficulty';
+                recommendations = 'الأداء ضمن المعدل الطبيعي. استمر في المتابعة الروتينية.';
+            } else if (totalScore <= 30) {
+                diagnosisLevel = 'صعوبات خفيفة';
+                diagnosisClass = 'mild-difficulty';
+                recommendations = 'يستفيد من برامج الدعم البسيطة والمتابعة الإضافية في المناطق الضعيفة.';
+            } else if (totalScore <= 45) {
+                diagnosisLevel = 'صعوبات متوسطة';
+                diagnosisClass = 'moderate-difficulty';
+                recommendations = 'بحاجة إلى تقييم متخصص وبرنامج تدخل فردي في المجالات المتأثرة.';
+            } else {
+                diagnosisLevel = 'صعوبات قوية';
+                diagnosisClass = 'severe-difficulty';
+                recommendations = 'يحتاج إلى تقييم شامل متعدد التخصصات وبرنامج تدخل مكثف وفوري.';
+            }
+            
+            document.getElementById('diagnosisLevel').textContent = diagnosisLevel;
+            document.getElementById('diagnosisLevel').className = `diagnosis-level ${diagnosisClass}`;
+            
+            // عرض نتائج المحاور
+            let breakdownHTML = '';
+            for (const [domain, score] of Object.entries(domainScores)) {
+                let scoreColor = '#27ae60'; // أخضر
+                if (score >= 6) scoreColor = '#e74c3c'; // أحمر
+                else if (score >= 4) scoreColor = '#f39c12'; // برتقالي
+                
+                breakdownHTML += `
+                    <div class="domain-score">
+                        <strong>${domain}</strong><br>
+                        <span style="font-size: 18px; font-weight: bold; color: ${scoreColor}">${score}/9</span>
+                    </div>
+                `;
+            }
+            document.getElementById('domainBreakdown').innerHTML = breakdownHTML;
+            
+            // التشخيص التفصيلي
+            let detailedDiagnosisHTML = '';
+            for (const [domain, score] of Object.entries(domainScores)) {
+                let status = '';
+                let icon = '';
+                if (score >= 6) {
+                    status = 'ضعف شديد - يحتاج تدخل عاجل';
+                    icon = '🔴';
+                } else if (score >= 4) {
+                    status = 'ضعف متوسط - يحتاج دعم';
+                    icon = '🟡';
+                } else if (score >= 2) {
+                    status = 'ضعف بسيط - يحتاج متابعة';
+                    icon = '🟢';
+                } else {
+                    status = 'ضمن الطبيعي - أداء جيد';
+                    icon = '✅';
+                }
+                detailedDiagnosisHTML += `<p><strong>${domain}:</strong> ${icon} ${status} (${score}/9)</p>`;
+            }
+            document.getElementById('detailedDiagnosis').innerHTML = detailedDiagnosisHTML;
+
+            // النصائح العلمية
+            const expertTips = `
+                <p>1. <strong>البيئة الهيكلية (فنلندا):</strong> توفير مساحة دراسة هادئة خالية من المشتتات</p>
+                <p>2. <strong>التكرار المتباعد (ألمانيا):</strong> مراجعة الدروس على فترات متباعدة لتعزيز الذاكرة طويلة المدى</p>
+                <p>3. <strong>التعليم المتعدد الحواس (اليابان):</strong> استخدام الحواس المختلفة في التعلم (بصرية، سمعية، حركية)</p>
+                <p>4. <strong>الأهداف الصغيرة (كندا):</strong> تقسيم المهام الكبيرة إلى مهام صغيرة قابلة للتحقيق</p>
+                <p>5. <strong>التغذية الدماغية (الولايات المتحدة):</strong> الاهتمام بالتغذية الغذية بأوميغا-3 والبروتينات</p>
+            `;
+            document.getElementById('expertTips').innerHTML = expertTips;
+
+            // التمارين التدريبية
+            const trainingExercises = `
+                <p>1. <strong>تمرين الذاكرة العاملة (برنامج Cogmed - السويد):</strong> تذكر تسلسل أرقام أو كلمات عكسياً</p>
+                <p>2. <strong>تمرين الانتباه (برنامج Attention Gym - أمريكا):</strong> متابعة أشكال متحركة على الشاشة</p>
+                <p>3. <strong>تمرين القراءة (طريقة أورتون-جيلنجهام - أمريكا):</strong> قراءة متعددة الحواس للحروف والكلمات</p>
+                <p>4. <strong>تمرين الفهم (استراتيجية SQ3R - بريطانيا):</strong> مسح، سؤال، قراءة، تسميع، مراجعة</p>
+                <p>5. <strong>تمرين الوظائف التنفيذية (برنامج BrainHQ - أمريكا):</strong> ألعاب تركيز وتخطيط متدرجة الصعوبة</p>
+            `;
+            document.getElementById('trainingExercises').innerHTML = trainingExercises;
+
+            document.getElementById('professionalResults').style.display = 'block';
+            
+            // التمرير إلى النتائج
+            document.getElementById('professionalResults').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
