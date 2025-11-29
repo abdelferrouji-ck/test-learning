@@ -1,0 +1,64 @@
+<div class="professional-container">
+    <div class="professional-header">
+        <h1>الاختبار التشخيصي الشامل للتعثر الدراسي</h1>
+        <div class="protocol-badge">نسخة مهنية معتمدة - 21 بند تشخيصي</div>
+    </div>
+
+    <form id="professionalAssessmentForm">
+
+        <div class="domain-header">
+            <span>المحور الأول: الانتباه والتركيز</span>
+            <div class="domain-number">3 بنود</div>
+        </div>
+
+        <div class="domain-section">
+            <div class="question-card">
+                <div class="question-text">1. هل يجد الطالب صعوبة في الحفاظ على الانتباه أثناء شرح الدروس؟</div>
+                <div class="clinical-scale">
+                    <label class="scale-option"><input type="radio" name="attention_1" value="0"><span>أبداً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_1" value="1"><span>نادراً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_1" value="2"><span>غالباً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_1" value="3"><span>دائماً</span></label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">2. هل يتشتت انتباهه بسهولة؟</div>
+                <div class="clinical-scale">
+                    <label class="scale-option"><input type="radio" name="attention_2" value="0"><span>أبداً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_2" value="1"><span>نادراً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_2" value="2"><span>غالباً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_2" value="3"><span>دائماً</span></label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">3. هل يواجه صعوبة في إنهاء المهام بسبب قلة التركيز؟</div>
+                <div class="clinical-scale">
+                    <label class="scale-option"><input type="radio" name="attention_3" value="0"><span>أبداً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_3" value="1"><span>نادراً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_3" value="2"><span>غالباً</span></label>
+                    <label class="scale-option"><input type="radio" name="attention_3" value="3"><span>دائماً</span></label>
+                </div>
+            </div>
+        </div>
+
+        <div id="otherDomains"></div>
+
+        <div class="error-message" id="errorMessage">⚠️ يرجى الإجابة على جميع الأسئلة</div>
+
+        <button type="submit" class="btn-professional">الحصول على النتيجة التشخيصية</button>
+    </form>
+
+    <div id="professionalResults" class="professional-results">
+        <div class="results-container">
+            <h2>النتيجة التشخيصية النهائية</h2>
+            <div class="final-score" id="totalScore">0</div>
+            <div class="diagnosis-level" id="diagnosisLevel"></div>
+            <div class="domain-breakdown" id="domainBreakdown"></div>
+            <div id="detailedDiagnosis"></div>
+            <div id="expertTips"></div>
+            <div id="trainingExercises"></div>
+        </div>
+    </div>
+</div>
